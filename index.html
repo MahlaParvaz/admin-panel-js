@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <link href="src/css/style.css" rel="stylesheet" />
+  </head>
+  <body class="light">
+    <div class="backdrop"></div>
+    <div class="container">
+      <!-- sidebar -->
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar__logo">
+          <i class="bx bxl-c-plus-plus"></i>
+          <span class="logo__name">Plant</span>
+        </div>
+        <ul class="sidebar__links">
+          <li>
+            <div class="sidebar__icon">
+              <a href="">
+                <i class="fa-solid fa-house"></i>
+                <!-- <i class="fa-solid fa-gauge"></i> -->
+                <span class="sidebar__link-name">Dashboard</span>
+              </a>
+              <i class="fa-solid fa-chevron-down chevron-btn"></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="sidebar__link-name" href="">Dashboard</a></li>
+              <li><a href=""> Panel </a></li>
+              <li><a href=""> Analytics </a></li>
+              <li><a href=""> Charts </a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-user"></i>
+              <span class="sidebar__link-name">Customers</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li>
+                <a class="sidebar__link-name" href="">Customers</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-scroll"></i>
+              <span class="sidebar__link-name">Orders</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li>
+                <a class="sidebar__link-name" href="">Orders</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-clipboard-list"></i>
+
+              <span class="sidebar__link-name">Products</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li>
+                <a class="sidebar__link-name" href="">Products</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-envelope"></i>
+              <span class="sidebar__link-name">Message</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li>
+                <a class="sidebar__link-name" href="">Message</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-gear"></i>
+              <span class="sidebar__link-name">Setting</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li>
+                <a class="sidebar__link-name" href="">Setting</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span class="sidebar__link-name"> Log Out</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li>
+                <a class="sidebar__link-name" href=""> Log Out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- content -->
+      <div class="content" id="content">
+        <!-- navbar -->
+        <nav class="nav">
+          <ul class="nav__left-items">
+            <li class="nav__menu-btn">
+              <i class="fa-solid fa-bars"></i>
+            </li>
+            <li>
+              <span class="nav__darkmood" title="darkmood">
+                <i class="fa-solid fa-moon"></i>
+              </span>
+              <box-icon class="nav__lightmood" color="#7c3aed" title="lightmood" type="solid" name="sun"></box-icon>
+            </li>
+            <li class="nav__timer"></li>
+          </ul>
+          <ul class="nav__right-items">
+            <li class="nav__search">
+              <input class="search__input" type="search" placeholder="search" />
+              <span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </li>
+            <li class="nav__calendar">
+              <span class="calendar-icon">
+                <i class="fa-regular fa-calendar"></i>
+              </span>
+              <!-- calendar -->
+              <div class="calendar">
+                <div class="calendar__header">
+                  <div class="calendar__months">
+                    <button class="btn btn--prev-year" id="prev-year">
+                      <i class="fa-solid fa-chevron-left"></i>
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn btn--prev-month" id="prev-month"><i class="fa-solid fa-chevron-left"></i></button>
+                    <span class="calendar__month"></span>
+                    <span class="calendar__year"></span>
+                    <button class="btn btn--next-month" id="next-month"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="btn btn--next-year--btn" id="next-year">
+                      <i class="fa-solid fa-chevron-right"></i>
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="calendar__week-days">
+                  <div>Sun</div>
+                  <div>Mon</div>
+                  <div>Tue</div>
+                  <div>Wed</div>
+                  <div>Thu</div>
+                  <div>Fri</div>
+                  <div>Sat</div>
+                </div>
+                <div class="calendar__days">
+                  <!-- <span></span> -->
+                </div>
+              </div>
+            </li>
+            <li class="nav__notif">
+              <span class="notif--red-circle"></span>
+              <i class="fa-solid fa-bell"></i>
+            </li>
+            <li class="nav__avatar">
+              <img class="avatar__img" src="assets/images/avatar.avif" alt="" />
+            </li>
+          </ul>
+        </nav>
+
+        <div class="main container">
+          <div class="main__items">
+            <!-- cards -->
+            <div class="main__cards">
+              <!-- card 1 -->
+              <div class="card">
+                <div class="card__dollor-icon">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="card__detail">
+                  <span class="card__numb">
+                    <i class="fa-solid fa-plus"></i>
+                    578320
+                  </span>
+                  <span class="card__title">Total Revenue</span>
+                </div>
+              </div>
+              <!-- card 2 -->
+              <div class="card">
+                <div class="card__shopping-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="card__detail">
+                  <span class="card__numb">
+                    <i class="fa-solid fa-plus"></i>
+                    589
+                  </span>
+                  <span class="card__title">Sales</span>
+                </div>
+              </div>
+              <!-- card 3 -->
+              <div class="card">
+                <div class="card__user-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="card__detail">
+                  <span class="card-numb">
+                    <i class="fa-solid fa-plus"></i>
+                    1K
+                  </span>
+                  <span class="card__title">Customers</span>
+                </div>
+              </div>
+            </div>
+            <!-- sales chart -->
+            <div class="main__charts">
+              <div class="main__charts--bargraph">
+                <h4>Sale Bar Chart</h4>
+                <div class="barGraph">
+                  <canvas id="barGraph"></canvas>
+                </div>
+              </div>
+              <div class="main__charts--doughnut">
+                <h4>Sale Polar Area Chart</h4>
+                <div class="myPolarArea">
+                  <canvas id="myPolarArea"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- recent order panel table -->
+            <div class="main__table-todolist">
+              <!-- table -->
+              <div class="main__table">
+                <div class="header">
+                  <h4>Recent Orders</h4>
+                  <button class="view-all-btn">View All</button>
+                </div>
+                <table class="table">
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Product Number</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                  </tr>
+                  <tr>
+                    <td>Asteraceae</td>
+                    <td>3874</td>
+                    <td class="canceled">Canceled</td>
+                    <td class="pending" class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Scrophulariaceae</td>
+                    <td>4456</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Opuntia basilaris</td>
+                    <td>5498</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Lamiaceae</td>
+                    <td>3014</td>
+                    <td class="canceled">Canceled</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Poaceae</td>
+                    <td>2031</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Asteraceae</td>
+                    <td>4851</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Adoxaceae</td>
+                    <td>4467</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Iridaceae</td>
+                    <td>9012</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Fabiaceae</td>
+                    <td>1342</td>
+                    <td class="canceled">Canceled</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Fabiaceae</td>
+                    <td>1467</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Goodeniaceae</td>
+                    <td>1254</td>
+                    <td class="done">Done</td>
+                    <td class="pending">Pending</td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- todo list -->
+              <div class="main__todolist">
+                <div class="todolist__header">
+                  <h4>Todos</h4>
+                  <div class="todolist__icon">
+                    <span class="filter-icon"><i class="fa-solid fa-arrow-down-wide-short"></i></span>
+                  </div>
+                </div>
+                <div class="todolist__filter">
+                  <div class="todolist__filter-items">
+                    <span class="all sort" data-filter="all">All</span>
+                    <span class="complete sort" data-filter="Completed">Completed</span>
+                    <span class="uncompleted sort" data-filter="Uncompleted">Uncompleted</span>
+                  </div>
+                </div>
+                <form class="todolist__form">
+                  <input type="text" class="todolist__input" placeholder="write something" />
+                  <button type="submit" class="todolist__add">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </form>
+                <div class="todolist__items">
+                  <!-- todolist items -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/js/chart.js"></script>
+    <script src="src/js/drowpdown-sidebar.js"></script>
+    <script src="src/js/app.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+  </body>
+</html>
