@@ -866,7 +866,8 @@ h2 {
 /* todolist */
 .main__todolist {
   flex-basis: 200px;
-  overflow-y: none;
+  overflow-y: auto;
+  height: auto;
 }
 .todolist__icon.show-filter {
   display: flex;
@@ -1018,6 +1019,7 @@ h2 {
     width: 30rem;
   }
   .todolist__add {
+    width: 50px;
     font-size: 1.6rem;
   }
 }
