@@ -4,7 +4,6 @@ const todoAddBtn = document.querySelector('.todolist__add');
 const todoList = document.querySelector('.todolist__items');
 const todoFilterBtn = document.querySelectorAll('.filter-icon');
 const todoFilterItem = document.querySelector('.todolist__filter');
-const sortBtn = document.querySelectorAll('.sort');
 //  dark mood
 const darkBtn = document.querySelector('.nav__darkmood');
 const lightBtn = document.querySelector('.nav__lightmood');
@@ -68,7 +67,7 @@ function checkEditRemove(event) {
   const item = event.target;
   const todoItem = item.parentElement.parentElement.parentElement;
   if (item.classList.contains('fa-check')) {
-    todoItem.classList.toggle('completed');
+    todoItem.classList.toggle('complete');
   } else if (item.classList.contains('fa-trash-can')) {
     todoItem.remove();
     removeLocalStorageTodo(todoItem);
@@ -87,52 +86,41 @@ todoFilterBtn.forEach((event) => {
     const filterParent = e.target.parentElement.parentElement;
     if (filterParent.classList.toggle('show-filter')) {
       todoFilterItem.style.display = 'none';
+      backDrop.style.display = 'none';
     } else {
       todoFilterItem.style.display = 'flex';
+      backDrop.style.display = 'flex';
     }
   });
 });
 
-function todoFilters() {
-  //   const todos = [...todoList.childNodes];
-  //   const filter = event.target.classList.value;
-  //   console.log(filter);
-  //   todos.forEach((todo) => {
-  //     switch (filter) {
-  //       case 'all':
-  //         todo.style.display = 'flex';
-  //         break;
-  //       case 'completed':
-  //         if (todo.classList.contains('completed')) {
-  //           todo.style.display = 'flex';
-  //         } else {
-  //           todo.style.display = 'none';
-  //         }
-  //         break;
-  //       case 'uncompleted':
-  //         if (!todo.classList.contains('completed')) {
-  //           todo.style.display = 'flex';
-  //         } else {
-  //           todo.style.display = 'none';
-  //         }
-  //         break;
-  //     }
-  //   });
-  //   sortBtn.forEach((item) => {
-  //     item.addEventListener('click', (e) => {
-  //       const _todoList = [...document.querySelectorAll('.todolist__items')];
-  //       const filter = e.target.dataset.filter;
-  //       _todoList
-  //       if (filter === 'all') {
-  //         e.style.display = 'block';
-  //       } else if (e.classList.contains(filter)) {
-  //         e.style.display = 'block';
-  //       } else {
-  //         e.style.display = 'none';
-  //       }
-  //       console.log(filter);
-  //     });
-  //   });
+function todoFilters(event) {
+  const _todos = [...document.querySelectorAll('.todos')];
+  const filter = event.target.classList.value;
+  _todos.forEach((item) => {
+    switch (filter) {
+      case 'all':
+        item.style.display = 'flex';
+        closeBackDrop();
+        break;
+      case 'completed':
+        if (item.classList.contains('complete')) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+        closeBackDrop();
+        break;
+      case 'uncompleted':
+        if (!item.classList.contains('complete')) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+        closeBackDrop();
+        break;
+    }
+  });
 }
 
 // todo localstorage setting
@@ -212,11 +200,9 @@ searchInput.addEventListener('input', (e) => {
 
 // show full table by cliking view all btn
 function viewAll() {
-  orderTable.style.height = '100%';
+  orderTable.classList.toggle('view-btn');
 }
-
 // show calendar btn toggle
-
 calBtn.forEach((event) => {
   event.addEventListener('click', (e) => {
     const calParent = e.target.parentElement.parentElement;
@@ -235,6 +221,7 @@ calBtn.forEach((event) => {
 function closeBackDrop() {
   calendar.style.display = 'none';
   backDrop.style.display = 'none';
+  todoFilterItem.style.display = 'none';
 }
 // calendar js
 const currDate = new Date();
